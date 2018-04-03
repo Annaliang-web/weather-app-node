@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Weather App - Search result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body> 
+    <div class="container">
+      <header class="row">
+        <div class="col s6">
+          <a href="http://localhost:3000/">Weather</a>
+        </div>
+        <form action="/search" method="POST" class="col s6">
+          <input type="text" name="city" placeholder="Enter a City" required>
+          <input type="submit" value="Get Weather">
+        </form>  
+      </header>
+      <div>
+      <% if(weather !== null){ %>
+          <h2>Today's Weather</h2>
+          <h3><%=city %>, <%= country %> </h3>
+          <h4><%=weather %> <img src="http://openweathermap.org/img/w/<%=icon%>.png" alt="<%=weather%>"></h4>
+          <p>Humidity: <%=humidity%>%</p>
+          <p>Tempreture: <%=Math.round(cTemp) %>°C</p>      
+          <p><%=Math.round(fTemp)%>°F</p>
+          <p>Wind speed: <%=windSpeed %> mph</p>
+          <p>Pressure: <%=pressure%> hPa</p>          
+      <% }else{ %>  
+          <h3 style="color: purple; text-align: center;"><%=error%></h3>
+      <% } %>
+      </div>
+    </div>
+  </body>
+</html>
+
