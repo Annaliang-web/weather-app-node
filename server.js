@@ -23,7 +23,7 @@ app.get('/', function(req, res){
       res.render('index', {weather:null, error:`Oops, there's an error`})
     }
     else{
-      let weather = JSON.parse(body) //JSON object body
+      let weather = JSON.parse(body) //JSON body
       console.log(weather.name);
       if(weather.main == undefined || weather.weather[0] == undefined || weather.sys.country == undefined){
         res.render('index', {weather:null, error: `Oops, there's an error.`})
@@ -36,6 +36,8 @@ app.get('/', function(req, res){
           icon: weather.weather[0].icon,
           fTemp: (weather.main.temp - 273.15) * 1.8 + 32, //JSON data use Kelvin unit
           cTemp: weather.main.temp - 273.15, //JSON data use Kelvin unit
+          sunRise:(new Date(weather.sys.sunrise * 1000)).toLocaleTimeString(),
+          sunSet: (new Date(weather.sys.sunset * 1000)).toLocaleTimeString(),
           humidity: weather.main.humidity,
           windSpeed: weather.wind.speed,
           pressure: weather.main.pressure
@@ -65,6 +67,8 @@ app.post('/search', (req,res)=>{
           country: searchWeather.sys.country,
           weather: searchWeather.weather[0].main,
           icon: searchWeather.weather[0].icon,
+          sunRise: (new Date(searchWeather.sys.sunrise * 1000)).toLocaleTimeString(),
+          sunSet: (new Date(searchWeather.sys.sunset * 1000)).toLocaleTimeString(),
           fTemp: (searchWeather.main.temp - 273.15) * 1.8 + 32, //JSON data use Kelvin unit
           cTemp: searchWeather.main.temp - 273.15, //JSON data use Kelvin unit
           humidity: searchWeather.main.humidity,

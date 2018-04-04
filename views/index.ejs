@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    
     <title>Weather App with Node and Ejs</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,20 +27,22 @@
         </div>
       </nav>
 
-      <div>
-        <% if(weather !== null){ %>
-          <h2>Today's Weather</h2>
-          <h3><%=city %>, <%= country %> </h3>
-          <h4><%=weather %><img src="http://openweathermap.org/img/w/<%=icon%>.png" alt="<%=weather%>"></h4>
-          <p>Humidity: <%=humidity%>%</p>
-          <p>Tempreture: <%=Math.round(cTemp) %>°C</p>      
-          <p><%=Math.round(fTemp) %>°F</p>
-          <p>Wind speed: <%=windSpeed %> mph</p>
-          <p>Pressure: <%=pressure%> hPa</p>    
-        <% }else{ %>
-          <h3><%=error%></h3>
-        <% } %>
-        
+      <div class="z-depth-2 row">
+        <div class="col s12">
+          <% if(weather !== null){ %>
+            <h3>Weather in <%=city %>, <%= country %> </h3>
+            <h4><%=weather %><img src="http://openweathermap.org/img/w/<%=icon%>.png" alt="<%=weather%>"></h4>
+            <p>Sunrise: <%=sunRise%> (current local time)</p>
+            <p>Sunset: <%=sunSet%> (current local time)</p>
+            <p>Humidity: <%=humidity%>%</p>
+            <p>Tempreture: <%=Math.round(cTemp) %>°C</p>      
+            <p><%=Math.round(fTemp) %>°F</p>
+            <p>Wind speed: <%=windSpeed %> mph</p>
+            <p>Pressure: <%=pressure%> hPa</p>    
+          <% }else{ %>
+            <h3><%=error%></h3>
+          <% } %>
+        </div>
       </div>
     </div>
   </body>
